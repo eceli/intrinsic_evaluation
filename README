@@ -1,0 +1,6 @@
+En PCFG, se encuentran los programas para generar los corpus sintéticos
+En vec2libsmv, se encuentran los programas para convertir los vectores de los modelos en archivos de train y test
+En prueba_base.sh, para cada gramática a probar, se define en las variables generales y de manera automática se:
+-invoca programa que genera corpus sintético
+-invoca entrenamiento de modelo de word embeddings
+-invoca entrenamiento y testeo de los vectores
