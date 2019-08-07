@@ -5,6 +5,7 @@
 W2VDIR=word2vec-master
 GLOVEDIR=GloVe-master
 FTDIR=fastText-0.9.1
+LLDIR=liblinear-2.30
 NCODIR=nco
 AMBDIR=amb
 SPARDIR=spar
@@ -37,16 +38,16 @@ echo "Generando los archivos de train y test de sg"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo sg"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -67,17 +68,17 @@ echo "Generando los archivos de train y test de cbow"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo cbow"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "s -2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -96,17 +97,17 @@ echo "Generando los archivos de train y test de fastText"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo fastText"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "s -2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train  $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -145,17 +146,17 @@ echo "Generando los archivos de train y test de GloVe"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo GloVe"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "-s 2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -177,17 +178,17 @@ echo "Generando los archivos de train y test de sg"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo sg"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "-s 2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -203,17 +204,17 @@ echo "Generando los archivos de train y test de sg"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo sg"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "-s 2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
@@ -230,17 +231,17 @@ echo "Generando los archivos de train y test de sg"
 echo "$ python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT"
 python vec2libsmv/vec2libsmv-$CASE.py -d $CASE/$PRE$SAVE_FILE$EXT
 echo "Entrenando y prediciendo sg"
-echo "$ liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
-liblinear-2.30/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
+echo "$ $LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model"
+$LLDIR/train $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.model
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.out
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.out
 echo "-s 2"
-echo "$ liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
-liblinear-2.30/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
-echo "$ liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
-liblinear-2.30/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
+echo "$ $LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2"
+$LLDIR/train -s 2 $CASE/$PRE$SAVE_FILE$EXT.train $CASE/$PRE$SAVE_FILE$EXT.train.models2
+echo "$ $LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.models2 $CASE/$PRE$SAVE_FILE$EXT.outs2"
+$LLDIR/predict $CASE/$PRE$SAVE_FILE$EXT.test $CASE/$PRE$SAVE_FILE$EXT.train.model $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Salida del clasificador"
 cat $CASE/$PRE$SAVE_FILE$EXT.outs2
 echo "Test con Gensim liblinear"
