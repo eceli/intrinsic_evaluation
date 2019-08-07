@@ -4,3 +4,6 @@ En prueba_base.sh, para cada gramática a probar, se define en las variables gen
 -invoca programa que genera corpus sintético
 -invoca entrenamiento de modelo de word embeddings
 -invoca entrenamiento y testeo de los vectores
+
+
+Es necesario contar con los modelos word2vec, FastText y Glove. Especificar la ruta donde se encuentran instalados en las variables correspondientes.
